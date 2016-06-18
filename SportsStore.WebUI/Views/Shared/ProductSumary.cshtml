@@ -12,7 +12,7 @@
     {
         @Html.HiddenFor(x => x.ProductID)
         @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-        <input class="btn btn-primary" type="submit" value="+ Add to cart" />
+        <input class="btn btn-success" type="submit" value="+ Add to cart" />
     }
 
     <h4>@Model.Price.ToString("c")</h4>
