@@ -1,0 +1,50 @@
+﻿@model SportsStore.WebUI.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "SportsStore: Your Cart";
+}
+
+<h2>Your Cart</h2>
+<table class="table" align="center">
+    <thead>
+        <tr class="info">
+            <th>Quantity</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td>@line.Quantity</td>
+                <td>@line.Product.Name</td>
+                <td>@line.Product.Price.ToString("c")</td>
+                <td>@((line.Quantity * line.Product.Price).ToString("c"))</td>
+                <td align="center">
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("ProductID", line.Product.ProductID)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="btn btn-warning" type="submit" value="Remove" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" align="right">Total:</td>
+            <td>@Model.Cart.ComputeTotalValue().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div align="center">
+    <a class="btn btn-default" href="@Model.ReturnUrl">Continue shopping</a>
+    @Html.ActionLink("Checkout now", "Checkout", new { controller = "Cart" }, new { @class = "btn btn-default" })
+</div>
+
+

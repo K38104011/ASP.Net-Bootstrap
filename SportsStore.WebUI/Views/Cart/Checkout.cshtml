@@ -1,0 +1,92 @@
+﻿@model SportsStore.Domain.Entities.ShippingDetails
+
+@{
+    ViewBag.Title = "SportsStore: Checkout";
+}
+
+<div align="center">
+    <h2>Check out now</h2>
+    Please enter your details, and we'll ship your goods right away!
+</div>
+
+<div class="container">
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+    {
+        foreach (var modelError in Html.ViewData.ModelState.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+        {
+            <div class="alert alert-danger" role="alert">
+                @modelError.ErrorMessage
+            </div>
+        }
+    }
+
+    <h3 class="col-sm-offset-3">Ship to:</h3>
+    <div class="form-group">
+        <label class="control-label col-sm-2 col-sm-offset-2">Name:</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <h3 class="col-sm-offset-3">Address</h3>
+    <div class="form-group">
+        <label class="control-label col-sm-2 col-sm-offset-2">Line 1:</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(x => x.Line1, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 col-sm-offset-2">Line 2:</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(x => x.Line2, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 col-sm-offset-2">Line 3:</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(x => x.Line3, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 col-sm-offset-2">City:</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 col-sm-offset-2">State:</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(x => x.State, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 col-sm-offset-2">Zip:</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(x => x.Zip, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2 col-sm-offset-2">Country:</label>
+        <div class="col-sm-4">
+            @Html.TextBoxFor(x => x.Country, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <h3 class="col-sm-offset-3">Options</h3>
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-10">
+            <label>
+                @Html.EditorFor(x => x.GiftWrap)
+                Gift wrap these items
+            </label>
+        </div>
+    </div>
+        
+    <div align="center">
+        <input class="btn btn-primary" type="submit" value="Complete order" />
+    </div>
+}
+</div>
+
