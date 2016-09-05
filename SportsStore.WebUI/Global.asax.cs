@@ -9,6 +9,7 @@ using System.Web.Routing;
 using SportsStore.WebUI.Infrastructure;
 using SportsStore.WebUI.Binders;
 using SportsStore.Domain.Entities;
+using WebMatrix.WebData;
 
 namespace SportsStore.WebUI
 {
@@ -28,6 +29,8 @@ namespace SportsStore.WebUI
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
             ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
+
+            WebSecurity.InitializeDatabaseConnection("Membership", "Users", "Id", "UserName", autoCreateTables: true);  
         }
     }
 }

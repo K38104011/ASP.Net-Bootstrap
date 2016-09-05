@@ -20,7 +20,7 @@ namespace SportsStore.WebUI.HtmlHelpers
                 tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml = i.ToString();
                 if (i == pageInfo.CurrentPage)
-                    tag.AddCssClass("selected");
+                    li.AddCssClass("active");
                 li.InnerHtml += tag;
                 result.Append(li.ToString());
             }

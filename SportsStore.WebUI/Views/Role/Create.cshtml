@@ -1,4 +1,4 @@
-﻿@model SportsStore.WebUI.Models.LoginViewModel
+﻿@model SportsStore.WebUI.Models.RoleModel
 
 @{
     Layout = null;
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <title>Create</title>
 </head>
 <body>
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
@@ -21,22 +21,14 @@
         @Html.ValidationSummary(true)
     
         <fieldset>
-            <legend>LoginViewModel</legend>
+            <legend>RoleModel</legend>
     
             <div class="editor-label">
-                @Html.LabelFor(model => model.Password)
+                @Html.LabelFor(model => model.RoleName)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.Password)
-                @Html.ValidationMessageFor(model => model.Password)
-            </div>
-    
-            <div class="editor-label">
-                @Html.LabelFor(model => model.UserName)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.UserName)
-                @Html.ValidationMessageFor(model => model.UserName)
+                @Html.EditorFor(model => model.RoleName)
+                @Html.ValidationMessageFor(model => model.RoleName)
             </div>
     
             <p>

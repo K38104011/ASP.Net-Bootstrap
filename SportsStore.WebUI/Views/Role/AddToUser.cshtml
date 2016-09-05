@@ -1,4 +1,4 @@
-﻿@model SportsStore.WebUI.Models.LoginViewModel
+﻿@model SportsStore.WebUI.Models.AssignRoleViewModel
 
 @{
     Layout = null;
@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <title>AddToUser</title>
 </head>
 <body>
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
@@ -20,27 +20,29 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
     
+        @ViewBag.ResultMessage
+        
         <fieldset>
-            <legend>LoginViewModel</legend>
+            <legend>AssignRoleViewModel</legend>
     
             <div class="editor-label">
-                @Html.LabelFor(model => model.Password)
+                @Html.LabelFor(model => model.RoleName)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.Password)
-                @Html.ValidationMessageFor(model => model.Password)
+                @Html.DropDownListFor(x => x.RoleName, @Model.RolesList)
+                @Html.ValidationMessageFor(model => model.RoleName)
             </div>
     
             <div class="editor-label">
                 @Html.LabelFor(model => model.UserName)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.UserName)
+                @Html.DropDownListFor(x => x.UserName, @Model.UserList)
                 @Html.ValidationMessageFor(model => model.UserName)
             </div>
     
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Save" />
             </p>
         </fieldset>
     }
