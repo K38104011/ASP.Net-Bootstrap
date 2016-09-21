@@ -1,0 +1,19 @@
+﻿@using PagedList.Mvc;
+@model SportsStore.WebUI.Models.AnotherProductListViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.TextBox("SearchString")
+    <input type="submit" value="Search" />
+}
+
+@foreach (var p in Model.Products)
+{
+    Html.RenderPartial("ProductSumary", p);
+}
+
+@Html.PagedListPager(Model.Products, page => Url.Action("Index", new { currentSearchString = Model.currentSearchString, page }))
