@@ -8,12 +8,31 @@
 @using (Html.BeginForm())
 {
     @Html.TextBox("SearchString")
+
     <input type="submit" value="Search" />
+
+    <br />
+
+    if (Model.currentSelectedFilter == null)
+    {
+        @Html.RadioButtonFor(x => x.selectedFilter, "All", new { @checked = "checked" })@: All <br />
+    }
+    else
+    {
+        @Html.RadioButtonFor(x => x.selectedFilter, "All")@: All <br />
+    }
+    @Html.RadioButtonFor(x => x.selectedFilter, "Price")@: Price <br />
+    @Html.RadioButtonFor(x => x.selectedFilter, "Description")@: Description <br />
+    @Html.RadioButtonFor(x => x.selectedFilter, "Name")@: Name <br />
+    @Html.RadioButtonFor(x => x.selectedFilter, "Category")@: Category <br />
 }
+
+
 
 @foreach (var p in Model.Products)
 {
     Html.RenderPartial("ProductSumary", p);
 }
 
-@Html.PagedListPager(Model.Products, page => Url.Action("Index", new { currentSearchString = Model.currentSearchString, page }))
+@Html.PagedListPager(Model.Products, page => Url.Action("Index", new { currentSelectedFilter = Model.selectedFilter, 
+    currentSearchString = Model.currentSearchString, page }))
